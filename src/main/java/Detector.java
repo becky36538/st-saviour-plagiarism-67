@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class Detector {
     public static void main(String[] args) {
-        File cheat = new File("./resources/cheat.txt");
         try {
+            
+            File cheat = new File("cheat.txt");
             Scanner scanner = new Scanner(cheat);
 
             // contains access to file
@@ -14,8 +15,9 @@ public class Detector {
             }
 
             scanner.close();
+            
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            System.out.println("File not found");
         }
     }
 }

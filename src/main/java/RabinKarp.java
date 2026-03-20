@@ -1,49 +1,48 @@
-// Rabin-Karp algorithm in Java
-
 public class RabinKarp {
-  public final static int d = 10;
 
-  static void search(String pattern, String txt, int q) {
-    int m = pattern.length();
-    int n = txt.length();
-    int i, j;
-    int p = 0;
-    int t = 0;
-    int h = 1;
+   public final static int d = 256;
 
-    for (i = 0; i < m - 1; i++)
-      h = (h * d) % q;
+   public static boolean search(String pattern, String txt) {
+       int q = 101;
 
-    // Calculate hash value for pattern and text
-    for (i = 0; i < m; i++) {
-      p = (d * p + pattern.charAt(i)) % q;
-      t = (d * t + txt.charAt(i)) % q;
-    }
+       int m = pattern.length();
+       int n = txt.length();
 
-    // Find the match
-    for (i = 0; i <= n - m; i++) {
-      if (p == t) {
-        for (j = 0; j < m; j++) {
-          if (txt.charAt(i + j) != pattern.charAt(j))
-            break;
-        }
+       if (m > n) return false;
 
-        if (j == m)
-          System.out.println("Pattern is found at position: " + (i + 1));
-      }
+       int p = 0;
+       int t = 0;
+       int h = 1;
 
-      if (i < n - m) {
-        t = (d * (t - txt.charAt(i) * h) + txt.charAt(i + m)) % q;
-        if (t < 0)
-          t = (t + q);
-      }
-    }
-  }
+       for (int i = 0; i < m - 1; i++)
+           h = (h * d) % q;
 
-  public static void main(String[] args) {
-    String txt = "ABCCDDAEFG";
-    String pattern = "CDD";
-    int q = 13;
-    search(pattern, txt, q);
-  }
+       for (int i = 0; i < m; i++) {
+           p = (d * p + pattern.charAt(i)) % q;
+           t = (d * t + txt.charAt(i)) % q;
+       }
+
+       for (int i = 0; i <= n - m; i++) {
+
+           if (p == t) {
+               boolean match = true;
+
+               for (int j = 0; j < m; j++) {
+                   if (txt.charAt(i + j) != pattern.charAt(j)) {
+                       match = false;
+                       break;
+                   }
+               }
+
+               if (match) return true;
+           }
+
+           if (i < n - m) {
+               t = (d * (t - txt.charAt(i) * h) + txt.charAt(i + m)) % q;
+               if (t < 0) t += q;
+           }
+       }
+
+       return false;
+   }
 }
