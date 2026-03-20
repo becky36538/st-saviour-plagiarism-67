@@ -10,12 +10,12 @@ public class PlagiarismChecker {
             File plagarizedFile = new File("cheat.txt");
 
             Scanner originalScanner = new Scanner(originalFile);
-            Scanner plagcanner = new Scanner(plagarizedFile);
+            Scanner plagScanner = new Scanner(plagarizedFile);
 
             List<String> originalLines = new ArrayList<>();
             List<String> plagLines = new ArrayList<>();
 
-            while (organialScanner.hasNextLine()) {
+            while (originalScanner.hasNextLine()) {
                 originalLines.add(originalScanner.nextLine());
             }
 
@@ -27,7 +27,7 @@ public class PlagiarismChecker {
             plagScanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Error: File not found.");
-            e.printStackTrace();;
+            e.printStackTrace();
         }
     }
 }
