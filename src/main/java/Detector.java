@@ -1,7 +1,12 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class Detector {
     public static void main(String[] args) {
+        File cheat = new File("./resources/cheat.txt");
         try {
-            Scanner scanner = new Scanner(poem);
+            Scanner scanner = new Scanner(cheat);
 
             // contains access to file
             while (scanner.hasNextLine()) {
@@ -11,8 +16,6 @@ public class Detector {
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println(e);
-        } finally (
-
-        )
+        }
     }
 }
