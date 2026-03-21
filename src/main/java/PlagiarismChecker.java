@@ -20,7 +20,7 @@ public class PlagiarismChecker {
            ArrayList<String> originalLines = new ArrayList<>();
            ArrayList<String> plagLines = new ArrayList<>();
 
-           // READ + CLEAN original file
+           // read and clean original file
            while (originalScanner.hasNextLine()) {
                String line = originalScanner.nextLine()
                        .toLowerCase()                   // ignores capitalizations
@@ -32,7 +32,7 @@ public class PlagiarismChecker {
                }
            }
 
-           // READ + CLEAN plagiarized file
+           // read and clean plagiarized file
            while (plagScanner.hasNextLine()) {
                String line = plagScanner.nextLine()
                        .toLowerCase()
